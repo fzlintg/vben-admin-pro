@@ -265,6 +265,15 @@ const routes: RouteRecordRaw[] = [
               title: 'JSON BigInt',
             },
           },
+          {
+            name: 'ComponentListDemo',
+            path: '/demos/features/component-list',
+            component: () => import('#/views/component-list/index.vue'),
+            meta: {
+              icon: 'lucide:shapes',
+              title: '组件列表',
+            },
+          },
         ],
       },
       // 面包屑导航

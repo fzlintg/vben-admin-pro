@@ -85,6 +85,22 @@ const routes: RouteRecordRaw[] = [
               title: $t('examples.form.merge'),
             },
           },
+          {
+            name: 'FormDesigner',
+            path: '/examples/form/designer',
+            component: () => import('#/views/examples/form/designer.vue'),
+            meta: {
+              title: $t('examples.form.designer'),
+            },
+          },
+          {
+            name: 'FormRendererDemo',
+            path: '/examples/form/renderer',
+            component: () => import('#/views/examples/form/renderer.vue'),
+            meta: {
+              title: $t('examples.form.renderer'),
+            },
+          },
         ],
       },
       {

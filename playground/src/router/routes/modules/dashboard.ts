@@ -27,8 +27,20 @@ const routes: RouteRecordRaw[] = [
         path: '/workspace',
         component: () => import('#/views/dashboard/workspace/index.vue'),
         meta: {
-          icon: 'carbon:workspace',
+          icon: 'ion:briefcase-outline',
           title: $t('page.dashboard.workspace'),
+          order: 2,
+        },
+      },
+      {
+        name: 'Monitor',
+        path: '/monitor',
+        component: () => import('#/views/dashboard/monitor/index.vue'),
+        meta: {
+          icon: 'ion:desktop-outline',
+          title: $t('page.dashboard.monitor'),
+          order: 1,
+          badge: 'New',
         },
       },
     ],
