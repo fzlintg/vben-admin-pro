@@ -6,14 +6,10 @@ import { DeleteOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import { useFormDesignerStore } from '../../../store';
 
 const formDesignerStore = useFormDesignerStore();
+// const { selectedComponent } = storeToRefs(formDesignerStore);
 
 // 当前选中的表单项
-const currentItem = computed(() => {
-  const id = formDesignerStore.currentItemId;
-  if (!id) return null;
-
-  return formDesignerStore.formItems.find((item) => item.id === id);
-});
+const currentItem = computed(() => formDesignerStore.selectedComponent);
 
 // 处理属性变更
 const handlePropertyChange = () => {

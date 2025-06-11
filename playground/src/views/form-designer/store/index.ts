@@ -52,14 +52,6 @@ export const useFormDesignerStore = defineStore('formDesigner', () => {
     formItems.value.push(item);
   };
 
-  // 更新表单项
-  const updateFormItem = (item: FormItem) => {
-    const index = formItems.value.findIndex((i) => i.id === item.id);
-    if (index !== -1) {
-      formItems.value[index] = { ...item };
-    }
-  };
-
   // 移除表单项
   const removeFormItem = (index: number) => {
     formItems.value.splice(index, 1);
@@ -78,15 +70,28 @@ export const useFormDesignerStore = defineStore('formDesigner', () => {
   // 设置当前选中的表单项ID
   const setCurrentItemId = (id: string) => {
     currentItemId.value = id;
-    if (id) {
-      const item = formItems.value.find((item) => item.id === id);
+    updateSelectedComponent();
+  };
+
+  // 直接设置选中的组件
+  const setSelectedComponent = (item: FormItem | null) => {
+    selectedComponent.value = item;
+    currentItemId.value = item ? item.id : '';
+  };
+
+  // 更新选中的组件引用
+  const updateSelectedComponent = () => {
+    if (currentItemId.value) {
+      const item = formItems.value.find(
+        (item) => item.id === currentItemId.value,
+      );
       selectedComponent.value = item ? { ...item } : null;
     } else {
       selectedComponent.value = null;
     }
   };
 
-  // 更新表单项（增强版）
+  // 更新表单项
   const updateFormItem = (item: FormItem) => {
     const index = formItems.value.findIndex((i) => i.id === item.id);
     if (index !== -1) {

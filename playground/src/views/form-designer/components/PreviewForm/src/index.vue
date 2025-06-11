@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, reactive } from 'vue';
 
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { UploadOutlined as UploadIcon } from '@ant-design/icons-vue';
 
 import { useFormDesignerStore } from '../../../store';
 
@@ -245,7 +245,7 @@ const handleReset = () => {
             :list-type="item.props.listType"
           >
             <a-button>
-              <UploadOutlined />
+              <UploadIcon />
               点击上传
             </a-button>
           </a-upload>

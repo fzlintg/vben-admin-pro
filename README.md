@@ -194,4 +194,4 @@ If you find this project useful, you can buy author a glass of juice 🍹
 
 ## License
 
-[MIT © Vben-2020](./LICENSE)
+[MIT © lintg@2025](./LICENSE)

@@ -2,10 +2,10 @@
 import { computed } from 'vue';
 
 import {
-  DeleteOutlined,
-  ExportOutlined,
-  EyeOutlined,
-  ImportOutlined,
+  DeleteOutlined as DeleteIcon,
+  ExportOutlined as ExportIcon,
+  EyeOutlined as EyeIcon,
+  ImportOutlined as ImportIcon,
 } from '@ant-design/icons-vue';
 import { message, Modal } from 'ant-design-vue';
 
@@ -105,7 +105,7 @@ const handleDescriptionChange = () => {
       <!-- 预览按钮 -->
       <a-tooltip title="预览表单">
         <a-button type="primary" @click="handlePreview">
-          <template #icon><EyeOutlined /></template>
+          <template #icon><EyeIcon /></template>
           预览
         </a-button>
       </a-tooltip>
@@ -113,7 +113,7 @@ const handleDescriptionChange = () => {
       <!-- 清空按钮 -->
       <a-tooltip title="清空表单">
         <a-button danger @click="handleClear">
-          <template #icon><DeleteOutlined /></template>
+          <template #icon><DeleteIcon /></template>
           清空
         </a-button>
       </a-tooltip>
@@ -126,7 +126,7 @@ const handleDescriptionChange = () => {
           accept=".json"
         >
           <a-button>
-            <template #icon><ImportOutlined /></template>
+            <template #icon><ImportIcon /></template>
             导入
           </a-button>
         </a-upload>
@@ -135,7 +135,7 @@ const handleDescriptionChange = () => {
       <!-- 导出按钮 -->
       <a-tooltip title="导出表单配置">
         <a-button @click="handleExport">
-          <template #icon><ExportOutlined /></template>
+          <template #icon><ExportIcon /></template>
           导出
         </a-button>
       </a-tooltip>

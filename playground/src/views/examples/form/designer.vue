@@ -2,10 +2,11 @@
 import { ref } from 'vue';
 // 可编辑属性计算
 // 临时手动导入（配置生效后可删除）
-import { computed } from 'vue';
 
 import { Input, InputNumber, Select, Switch } from 'ant-design-vue';
 import draggable from 'vue3-draggable-next';
+
+import ComponentPanel from './components/ComponentPanel.vue';
 
 const components = {
   Input,
@@ -14,86 +15,33 @@ const components = {
   InputNumber,
 };
 
-// 组件定义
-const componentDefs = {
-  input: {
-    label: '输入框',
-    component: 'Input',
-    props: { placeholder: '请输入' },
-  },
-  select: {
-    label: '下拉框',
-    component: 'Select',
-    props: {
-      placeholder: '请选择',
-      options: [
-        { label: '选项1', value: '1' },
-        { label: '选项2', value: '2' },
-      ],
-    },
-  },
-  // 其他组件...
-};
-
-// 组件列表
-const componentList = ref(
-  Object.keys(componentDefs).map((type) => ({
-    type,
-    label: componentDefs[type].label,
-  })),
-);
-
 // 表单字段
 const formFields = ref([]);
 const selectedField = ref(null);
-const editableProps = computed(() => {
-  if (!selectedField.value) return [];
+const editableProps = ref([]);
 
-  const fieldType = selectedField.value.type;
-  const propsDef = componentDefs[fieldType]?.props || {};
-
-  return Object.keys(propsDef).map((propName) => ({
-    name: propName,
-    label: propName,
-    editor: 'Input',
-    editorProps: { placeholder: `请输入${propName}` },
-  }));
-});
+// 处理从ComponentPanel拖拽过来的组件
+const handleComponentDrop = (componentType: string, componentName: string) => {
+  formFields.value.push({
+    id: `field_${Date.now()}`,
+    type: componentType,
+    props: {
+      label: componentName,
+      placeholder: `请输入${componentName}`,
+    },
+  });
+};
 
 // 获取组件实例
 const getComponent = (type: string) => {
-  return componentDefs[type]?.component || 'div';
-};
-
-// 拖拽事件处理
-let dragItem = null;
-
-const onDragStart = (evt) => {
-  dragItem = evt.item.__draggableContext.element;
-  console.log('拖拽开始', dragItem);
-};
-
-const onDragEnd = () => {
-  dragItem = null;
-  console.log('拖拽结束');
+  return components[type] || 'div';
 };
 
 const onFieldsChange = (evt) => {
   if (evt.added) {
     const newItem = evt.added.element;
-    // 为拖拽过来的元素生成唯一ID和完整数据结构
-    formFields.value = formFields.value.map((item) => {
-      if (item === newItem) {
-        return {
-          ...newItem,
-          id: `field_${Date.now()}`,
-          props: { ...componentDefs[newItem.type]?.props },
-        };
-      }
-      return item;
-    });
+    selectedField.value = newItem;
   }
-  console.log('表单字段变化', formFields.value);
 };
 </script>
 
@@ -101,20 +49,7 @@ const onFieldsChange = (evt) => {
   <div class="form-designer">
     <!-- 组件面板 -->
     <div class="components-panel">
-      <h3>组件列表</h3>
-      <draggable
-        :list="componentList"
-        :group="{ name: 'components', pull: 'clone', put: false }"
-        item-key="type"
-        @start="onDragStart"
-        @end="onDragEnd"
-      >
-        <template #item="{ element }">
-          <div class="component-item">
-            {{ element.label }}
-          </div>
-        </template>
-      </draggable>
+      <ComponentPanel />
     </div>
 
     <!-- 设计区域 -->

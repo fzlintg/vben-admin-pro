@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import ComponentPanel from './components/ComponentPanel/index.vue';
-import FormDesignArea from './components/FormDesignArea/index.vue';
-import PreviewForm from './components/PreviewForm/index.vue';
-import PropertyPanel from './components/PropertyPanel/index.vue';
-import ToolBar from './components/ToolBar/index.vue';
+import ComponentPanel from './components/ComponentPanel/src/index.vue';
+import FormDesignArea from './components/FormDesignArea/src/index.vue';
+import PreviewForm from './components/PreviewForm/src/index.vue';
+import PropertyPanel from './components/PropertyPanel/src/index.vue';
+import ToolBar from './components/ToolBar/src/index.vue';
 import { useFormDesignerStore } from './store';
 
 const formDesignerStore = useFormDesignerStore();
@@ -73,20 +73,23 @@ formDesignerStore.$onAction(({ name, after }) => {
     flex: 1;
     display: flex;
     overflow: hidden;
+    position: relative;
 
     .design-area {
       flex: 1;
       padding: 16px;
       overflow-y: auto;
       background-color: #f5f5f5;
+      order: 2;
     }
 
     .component-panel {
       width: 280px;
       padding: 16px;
-      border-left: 1px solid #f0f0f0;
+      border-right: 1px solid #f0f0f0;
       background-color: #fff;
       overflow-y: auto;
+      order: 1;
     }
 
     .property-panel {
@@ -94,6 +97,7 @@ formDesignerStore.$onAction(({ name, after }) => {
       border-left: 1px solid #f0f0f0;
       background-color: #fff;
       overflow-y: auto;
+      order: 3;
     }
   }
 }

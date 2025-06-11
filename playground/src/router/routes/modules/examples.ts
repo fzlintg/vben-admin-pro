@@ -88,7 +88,7 @@ const routes: RouteRecordRaw[] = [
           {
             name: 'FormDesigner',
             path: '/examples/form/designer',
-            component: () => import('#/views/examples/form/designer.vue'),
+            component: () => import('#/views/form-designer/index.vue'),
             meta: {
               title: $t('examples.form.designer'),
             },
