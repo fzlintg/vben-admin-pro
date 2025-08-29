@@ -51,7 +51,7 @@
     "dayjs": "catalog:",
     "i": "^0.3.7",
     "json-bigint": "catalog:",
-    "npm": "^11.4.1",
+    "npm": "^11.5.2",
     "pinia": "catalog:",
     "uuid": "^11.1.0",
     "vue": "catalog:",
